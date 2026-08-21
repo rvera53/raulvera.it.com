@@ -668,6 +668,7 @@ form.addEventListener('submit', async (e) => {
         template: 'gracias-por-contactar',
         vars: { nombre },
         primaryColor: '#5EEAD4',
+        logoUrl: 'https://raulvera.it.com/rv-1e.svg',
         footerMsg: `${NOMBRE_SITIO} — this is an automated email, please do not reply.`,
       }).catch((err) => console.warn('Confirmation not sent:', err));
     }
