@@ -2,573 +2,99 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raúl Vera — Senior Mac &amp; Jamf Systems Engineer</title>
-<meta name="description" content="Raúl Vera Pineda — Senior Mac & Jamf Systems Engineer. 10+ years managing endpoint and identity infrastructure for enterprise clients.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:        #12161C;
-    --bg-panel:  #1A2029;
-    --bg-panel-2:#1F2733;
-    --border:    #2A323D;
-    --text:      #E8EAED;
-    --text-dim:  #9AA4B2;
-    --text-faint:#5D6673;
-    --accent:    #5EEAD4;
-    --accent-dim:#2E7D71;
-    --warn:      #F2B84B;
-    --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
-    --sans: 'IBM Plex Sans', -apple-system, Segoe UI, sans-serif;
-  }
-
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior: auto; }
-    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  }
-
-  body{
-    margin:0;
-    background: var(--bg);
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(94,234,212,0.08), transparent),
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: auto, 48px 48px, 48px 48px;
-    background-position: 0 0, -1px -1px, -1px -1px;
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  a{ color: var(--accent); text-decoration: none; }
-  a:hover{ text-decoration: underline; }
-  a:focus-visible, button:focus-visible{
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
-
-  .wrap{
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* ---------- NAV ---------- */
-  nav{
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(18,22,28,0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-  }
-  nav .wrap{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    padding-top: 14px;
-    padding-bottom: 14px;
-  }
-  .nav-id{
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-  .nav-id b{ color: var(--accent); font-weight: 600; }
-  .nav-links{
-    display:flex;
-    gap: 20px;
-    font-family: var(--mono);
-    font-size: 13px;
-  }
-  .nav-links a{ color: var(--text-dim); }
-  .nav-links a:hover{ color: var(--accent); }
-  .lang-switch{
-    display:flex;
-    align-items:center;
-    gap: 4px;
-    font-family: var(--mono);
-    font-size: 12px;
-    margin-left: 20px;
-    padding-left: 20px;
-    border-left: 1px solid var(--border);
-  }
-  .lang-switch a{ color: var(--text-faint); padding: 2px 4px; }
-  .lang-switch a:hover{ color: var(--accent); text-decoration:none; }
-  .lang-switch a.active{ color: var(--accent); }
-  .lang-switch span{ color: var(--text-faint); }
-
-  /* ---------- HERO / NEOFETCH PANEL ---------- */
-  header.hero{
-    padding: 56px 0 40px;
-  }
-  .panel{
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
-  }
-  .panel-titlebar{
-    display:flex;
-    align-items:center;
-    gap: 8px;
-    padding: 10px 14px;
-    background: var(--bg-panel-2);
-    border-bottom: 1px solid var(--border);
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-faint);
-  }
-  .dot{ width:10px; height:10px; border-radius:50%; display:inline-block; }
-  .dot.r{ background:#F2665B; } .dot.y{ background:#F2C14E; } .dot.g{ background:#66C86B; }
-  .panel-titlebar .path{ margin-left: 8px; }
-
-  .fetch{
-    display:grid;
-    grid-template-columns: auto 1fr;
-    gap: 28px;
-    padding: 28px;
-  }
-  .fetch-mark{
-    width: 84px;
-    height: auto;
-    flex-shrink: 0;
-  }
-  .fetch-data dt{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    margin-top: 10px;
-  }
-  .fetch-data dt:first-child{ margin-top: 0; }
-  .fetch-data dd{
-    margin: 2px 0 0;
-    font-family: var(--sans);
-    font-size: 15px;
-    color: var(--text);
-  }
-  .fetch-name{
-    font-family: var(--mono);
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--text);
-    margin: 0 0 2px;
-  }
-  .fetch-name .at{ color: var(--text-faint); }
-  .fetch-name .host{ color: var(--accent); }
-  .fetch-rule{
-    height:1px;
-    background: var(--border);
-    margin: 14px 0;
-  }
-  .status-pill{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--warn);
-    border: 1px solid rgba(242,184,75,0.35);
-    background: rgba(242,184,75,0.08);
-    padding: 3px 9px;
-    border-radius: 999px;
-  }
-  .status-pill .blip{
-    width:6px; height:6px; border-radius:50%;
-    background: var(--warn);
-  }
-
-  .lede{
-    margin-top: 28px;
-    font-size: 17px;
-    color: var(--text-dim);
-    max-width: 62ch;
-  }
-  .lede strong{ color: var(--text); font-weight: 600; }
-
-  /* ---------- SECTION LABELS ---------- */
-  .section{ padding: 44px 0; border-top: 1px solid var(--border); }
-  .section-label{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    margin: 0 0 22px;
-  }
-  .section-label::before{ content: "// "; color: var(--text-faint); }
-
-  /* ---------- EXPERIENCE (changelog style) ---------- */
-  .log-entry{
-    display:grid;
-    grid-template-columns: 108px 1fr;
-    gap: 20px;
-    padding: 18px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .log-entry:last-child{ border-bottom: none; }
-  .log-date{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-faint);
-    padding-top: 3px;
-  }
-  .log-role{
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--text);
-    margin: 0 0 2px;
-  }
-  .log-co{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-dim);
-    margin: 0 0 8px;
-  }
-  .log-desc{
-    font-size: 14.5px;
-    color: var(--text-dim);
-    margin: 0;
-  }
-
-  /* ---------- SKILLS (package list style) ---------- */
-  .pkg-group{ margin-bottom: 22px; }
-  .pkg-group:last-child{ margin-bottom: 0; }
-  .pkg-cmd{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-faint);
-    margin: 0 0 10px;
-  }
-  .pkg-cmd .flag{ color: var(--accent-dim); }
-  .pkg-list{
-    display:flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .pkg{
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--text);
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    padding: 5px 10px;
-    border-radius: 6px;
-  }
-  .pkg .ver{ color: var(--accent); }
-
-  /* ---------- CONTACT (terminal prompt) ---------- */
-  .term{
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 26px;
-    font-family: var(--mono);
-    font-size: 14px;
-  }
-  .term .prompt{ color: var(--text-faint); }
-  .term .cmd{ color: var(--text); }
-  .term .out{ color: var(--text-dim); margin: 6px 0 14px 0; }
-  .term .out a{ color: var(--accent); }
-  .term .cursor{
-    display:inline-block;
-    width: 8px; height: 15px;
-    background: var(--accent);
-    margin-left: 4px;
-    vertical-align: -2px;
-    animation: blink 1.1s steps(1) infinite;
-  }
-  @keyframes blink{ 50%{ opacity:0; } }
-
-  /* ---------- CONTACT FORM ---------- */
-  .form-panel{
-    margin-top: 20px;
-  }
-  .form-panel .panel-titlebar{ border-radius: 10px 10px 0 0; }
-  .contact-form{
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    border-top: none;
-    border-radius: 0 0 10px 10px;
-    padding: 24px 26px 26px;
-  }
-  .form-row{ margin-bottom: 16px; }
-  .form-row:last-of-type{ margin-bottom: 0; }
-  .form-row label{
-    display:block;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    margin-bottom: 6px;
-  }
-  .form-row label::before{ content: "$ "; color: var(--text-faint); }
-  .form-row input,
-  .form-row textarea{
-    width: 100%;
-    background: var(--bg-panel-2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 12px;
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.5;
-  }
-  .form-row input:focus,
-  .form-row textarea:focus{
-    outline: none;
-    border-color: var(--accent);
-  }
-  .form-row textarea{ resize: vertical; min-height: 96px; }
-  .hp{ position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
-  .form-actions{
-    display:flex;
-    align-items:center;
-    gap: 16px;
-    margin-top: 20px;
-  }
-  #submit-btn{
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--bg);
-    background: var(--accent);
-    border: none;
-    border-radius: 6px;
-    padding: 10px 18px;
-    cursor: pointer;
-  }
-  #submit-btn:hover{ background: #7FF0DD; }
-  #submit-btn:disabled{ opacity: 0.6; cursor: default; }
-  #form-status{
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--text-dim);
-    margin: 0;
-  }
-
-  footer{
-    padding: 30px 0 50px;
-    text-align:center;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-faint);
-  }
-
-  @media (max-width: 620px){
-    .fetch{ grid-template-columns: 1fr; gap: 16px; padding: 22px; }
-    .fetch-mark{ width: 56px; height: auto; }
-    .log-entry{ grid-template-columns: 1fr; gap: 4px; }
-    nav .wrap{ flex-wrap: wrap; justify-content: center; gap: 8px 0; padding-top: 10px; padding-bottom: 10px; }
-    .nav-id{ width: 100%; text-align: center; }
-    .nav-links{ gap: 12px; flex-wrap: wrap; justify-content: center; }
-    .lang-switch{ margin-left: 8px; padding-left: 8px; }
-  }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raúl Vera, Senior Mac &amp; Jamf Systems Engineer</title>
+<meta name="description" content="Raúl Vera Pineda, Senior Mac &amp; Jamf Systems Engineer. 10+ years managing endpoint and identity infrastructure for enterprise clients.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+<header class="top"><div class="container">
+  <a class="brand" href="#inicio">Raúl Vera</a>
+  <nav class="links" aria-label="Sections">
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a class="keep" href="#contact">Contact</a>
+    <span class="lang"><a href="/">ES</a><a href="/en/" aria-current="page">EN</a></span>
+  </nav>
+</div></header>
 
-<nav>
-  <div class="wrap">
-    <div class="nav-id"><b>raul</b>@raulvera.it.com</div>
-    <div class="nav-links">
-      <a href="#experience">experience</a>
-      <a href="#skills">skills</a>
-      <a href="#contact">contact</a>
-      <span class="lang-switch">
-        <a href="/">ES</a><span>·</span><a href="/en/" class="active" aria-current="page">EN</a>
-      </span>
+<main id="inicio">
+<section class="hero"><div class="container">
+  <div>
+    <h1>Raúl Vera</h1>
+    <p class="role">Senior Mac &amp; Jamf Systems Engineer</p>
+    <p class="lede">I design, automate, and operate the endpoint and identity infrastructure that keeps distributed organizations secure and productive.</p>
+    <div class="actions-hero">
+      <a class="btn" href="#contact">Write to me</a>
+      <a class="btn btn--ghost" href="https://www.linkedin.com/in/juan-raul-vera-pineda/?locale=en">LinkedIn</a>
     </div>
   </div>
-</nav>
+  <aside class="well w-facts">
+    <p class="status">Open to remote opportunities</p>
+    <h2>At a glance</h2>
+    <dl class="facts">
+      <div><dt>10+</dt><dd>years in enterprise Apple infrastructure</dd></div>
+      <div><dt>1,000+</dt><dd>managed macOS endpoints</dd></div>
+      <div><dt>25+</dt><dd>scripts in Bash and Python</dd></div>
+    </dl>
+    <p class="place">Querétaro, Mexico</p>
+  </aside>
+</div></section>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="panel">
-      <div class="panel-titlebar">
-        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="path">~/raul-vera — neofetch</span>
-      </div>
-      <div class="fetch">
-        <svg class="fetch-mark" viewBox="0 0 170 120" role="img" aria-label="RV" xmlns="http://www.w3.org/2000/svg">
-          <style>@keyframes blk{0%,52%{opacity:1}53%,100%{opacity:0}}.cur{animation:blk 1.1s steps(1) infinite}</style>
-          <rect x="2" y="2" width="166" height="116" fill="#f8f4f4" stroke="#201e1d" stroke-width="4"></rect>
-          <rect x="2" y="2" width="166" height="26" fill="#201e1d"></rect>
-          <g fill="#f3f2f2">
-            <rect x="12" y="12" width="8" height="8"></rect>
-            <rect x="26" y="12" width="8" height="8"></rect>
-            <rect x="40" y="12" width="8" height="8"></rect>
-          </g>
-          <text x="14" y="94" font-family="Archivo, sans-serif" font-weight="800" font-size="52" letter-spacing="-2" fill="#201e1d">RV</text>
-          <rect class="cur" x="98" y="84" width="26" height="10" fill="#201e1d"></rect>
-        </svg>
-        <div>
-          <p class="fetch-name">raul<span class="at">@</span><span class="host">raulvera.it.com</span></p>
-          <span class="status-pill"><span class="blip"></span> open to remote opportunities</span>
-          <div class="fetch-rule"></div>
-          <dl class="fetch-data">
-            <dt>role</dt><dd>Senior Mac &amp; Jamf Systems Engineer</dd>
-            <dt>location</dt><dd>Querétaro, Mexico (Remote)</dd>
-            <dt>uptime</dt><dd>10+ years managing enterprise Apple infrastructure</dd>
-            <dt>shell</dt><dd>Bash · Python · Jamf REST API</dd>
-            <dt>fleet</dt><dd>1,000+ managed macOS endpoints</dd>
-            <dt>languages</dt><dd>Spanish (native) · English (advanced) · French (intermediate)</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <p class="lede">
-      I design, automate, and operate the endpoint and identity infrastructure that keeps distributed organizations
-      secure and productive. <strong>10+ years</strong> managing enterprise fleets, with a library of
-      <strong>25+ scripts</strong> in Bash and Python that turn manual, error-prone work into repeatable,
-      self-sustaining systems.
-    </p>
+<section class="section" id="experience"><div class="container">
+  <h2>Experience</h2>
+  <div class="jobs">
+      <article class="job">
+        <span class="when">January 2022 to April 2026</span>
+        <div class="job-title"><h3>Senior Mac / Jamf Administrator</h3><p class="where">ATOS, remote, U.S. clients</p></div>
+        <p class="what">Administered Jamf Pro (MDM) for a fleet of 1,000+ endpoints, including ABM/ADE, Zero-Touch Deployment, and authentication via Okta/Azure AD SSO. Built automation on top of the Jamf REST API that eliminated manual provisioning work and reduced recurring ticket volume.</p>
+      </article>
+      <article class="job">
+        <span class="when">September to December 2021</span>
+        <div class="job-title"><h3>Mac Packager</h3><p class="where">HCL Technologies, Querétaro, Mexico</p></div>
+        <p class="what">Created, tested, and deployed complex software packages for mass distribution across macOS fleets.</p>
+      </article>
+      <article class="job">
+        <span class="when">July 2014 to September 2021</span>
+        <div class="job-title"><h3>Mac / Jamf Administrator &amp; Tuxedo Administrator</h3><p class="where">Tata Consultancy Services (TCS), Querétaro, Mexico</p></div>
+        <p class="what">Operated endpoint infrastructure for ~700 devices and administered Tuxedo middleware on Unix/Linux. Led a full Jamf Pro server environment migration with no service interruption.</p>
+      </article>
   </div>
-</header>
+</div></section>
 
-<section class="section" id="experience">
-  <div class="wrap">
-    <p class="section-label">experience</p>
-
-    <div class="log-entry">
-      <div class="log-date">January 2022 — April 2026</div>
-      <div>
-        <p class="log-role">Senior Mac / Jamf Administrator</p>
-        <p class="log-co">ATOS · Remote, U.S. clients</p>
-        <p class="log-desc">
-          Administered Jamf Pro (MDM) for a fleet of 1,000+ endpoints, including ABM/ADE, Zero-Touch Deployment,
-          and authentication via Okta/Azure AD SSO. Built automation on top of the Jamf REST API that eliminated
-          manual provisioning work and reduced recurring ticket volume.
-        </p>
-      </div>
-    </div>
-
-    <div class="log-entry">
-      <div class="log-date">2021</div>
-      <div>
-        <p class="log-role">Mac Packager</p>
-        <p class="log-co">HCL Technologies · Querétaro, Mexico</p>
-        <p class="log-desc">
-          Created, tested, and deployed complex software packages for mass distribution across macOS fleets.
-        </p>
-      </div>
-    </div>
-
-    <div class="log-entry">
-      <div class="log-date">2014 — 2021</div>
-      <div>
-        <p class="log-role">Mac / Jamf Administrator &amp; Tuxedo Administrator</p>
-        <p class="log-co">Tata Consultancy Services (TCS) · Querétaro, Mexico</p>
-        <p class="log-desc">
-          Operated endpoint infrastructure for ~700 devices and administered Tuxedo middleware on Unix/Linux.
-          Led a full Jamf Pro server environment migration with no service interruption.
-        </p>
-      </div>
-    </div>
+<section class="section" id="skills"><div class="container">
+  <h2>Skills</h2>
+  <div class="groups">
+    <div class="well group"><h3>MDM and identity</h3><ul class="list"><li>Jamf Pro</li><li>Apple Business Manager</li><li>Automated Device Enrollment</li><li>Zero-Touch Deployment</li><li>Okta SSO</li><li>Azure AD</li><li>LDAP / Active Directory</li></ul></div>
+    <div class="well group"><h3>Automation</h3><ul class="list"><li>Bash</li><li>Python</li><li>REST APIs</li><li>ServiceNow CMDB</li><li>Unix/Linux administration</li></ul></div>
+    <div class="well group"><h3>Operations</h3><ul class="list"><li>Incident escalation</li><li>Technical documentation</li><li>Mentoring</li><li>Client-facing English</li></ul></div>
+    <div class="well group"><h3>Languages</h3><dl class="rows"><div><dt>Spanish</dt><dd>native</dd></div><div><dt>English</dt><dd>advanced</dd></div><div><dt>French</dt><dd>intermediate</dd></div></dl></div>
   </div>
-</section>
+</div></section>
+</main>
 
-<section class="section" id="skills">
-  <div class="wrap">
-    <p class="section-label">skills</p>
-
-    <div class="pkg-group">
-      <p class="pkg-cmd"><span class="flag">$</span> ls --category mdm-identity</p>
-      <div class="pkg-list">
-        <span class="pkg">jamf-pro</span>
-        <span class="pkg">apple-business-manager</span>
-        <span class="pkg">automated-device-enrollment</span>
-        <span class="pkg">zero-touch-deployment</span>
-        <span class="pkg">okta-sso</span>
-        <span class="pkg">azure-ad</span>
-        <span class="pkg">ldap-active-directory</span>
-      </div>
+<section class="contact" id="contact"><div class="container">
+  <div class="well w-contact">
+    <div>
+      <h2>Let’s talk</h2>
+      <p class="direct"><a href="mailto:raul.vera.isc@gmail.com">raul.vera.isc@gmail.com</a><a href="https://www.linkedin.com/in/juan-raul-vera-pineda/?locale=en">LinkedIn</a></p>
     </div>
-
-    <div class="pkg-group">
-      <p class="pkg-cmd"><span class="flag">$</span> ls --category automation</p>
-      <div class="pkg-list">
-        <span class="pkg">bash</span>
-        <span class="pkg">python</span>
-        <span class="pkg">rest-apis</span>
-        <span class="pkg">servicenow-cmdb</span>
-        <span class="pkg">unix-linux-admin</span>
-      </div>
-    </div>
-
-    <div class="pkg-group">
-      <p class="pkg-cmd"><span class="flag">$</span> ls --category operations</p>
-      <div class="pkg-list">
-        <span class="pkg">incident-escalation</span>
-        <span class="pkg">technical-documentation</span>
-        <span class="pkg">mentoring</span>
-        <span class="pkg">client-facing-english</span>
-      </div>
-    </div>
+    <form id="contact-form" class="form" novalidate>
+      <div class="field"><label for="f-nombre">Name</label><input id="f-nombre" name="nombre" type="text" required autocomplete="name"></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+      <div class="field field--wide"><label for="f-telefono">Phone (optional)</label><input id="f-telefono" name="telefono" type="tel" autocomplete="tel"></div>
+      <div class="field field--wide"><label for="f-mensaje">Message</label><textarea id="f-mensaje" name="mensaje" rows="4" required></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="f-website">Leave this field empty</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="actions"><button class="btn" type="submit" id="submit-btn">Send</button><p id="form-status" role="status" aria-live="polite"></p></div>
+    </form>
   </div>
-</section>
+</div></section>
 
-<section class="section" id="contact">
-  <div class="wrap">
-    <p class="section-label">contact</p>
-    <div class="term">
-      <div><span class="prompt">$</span> <span class="cmd">whoami --contact</span></div>
-      <div class="out">
-        email:&nbsp;&nbsp;<a href="mailto:raul.vera.isc@gmail.com">raul.vera.isc@gmail.com</a><br>
-        linkedin:&nbsp;<a href="https://www.linkedin.com/in/juan-raul-vera-pineda/?locale=es">Raul Vera</a>
-      </div>
-      <div><span class="prompt">$</span><span class="cursor"></span></div>
-    </div>
-
-    <div class="form-panel">
-      <div class="panel-titlebar">
-        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="path">~/raul-vera — mail --compose</span>
-      </div>
-      <form id="contact-form" class="contact-form" novalidate>
-        <div class="form-row">
-          <label for="f-nombre">name</label>
-          <input id="f-nombre" name="nombre" type="text" required autocomplete="name">
-        </div>
-        <div class="form-row">
-          <label for="f-email">email</label>
-          <input id="f-email" name="email" type="email" required autocomplete="email">
-        </div>
-        <div class="form-row">
-          <label for="f-telefono">phone (optional)</label>
-          <input id="f-telefono" name="telefono" type="tel" autocomplete="tel">
-        </div>
-        <div class="form-row">
-          <label for="f-mensaje">message</label>
-          <textarea id="f-mensaje" name="mensaje" rows="5" required></textarea>
-        </div>
-
-        <!-- Honeypot antispam: hidden for humans, bots fill it in. -->
-        <div class="hp form-row" aria-hidden="true">
-          <label for="f-website">Leave this field empty</label>
-          <input id="f-website" name="website" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" id="submit-btn">send</button>
-          <p id="form-status" role="status" aria-live="polite"></p>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<footer>
-  raulvera.it.com · hand-built, served from GitHub Pages
-</footer>
+<footer class="foot"><div class="container">raulvera.it.com, served from GitHub Pages</div></footer>
 
 <script>
 // ── Config ────────────────────────────────────────────────────────────────
@@ -683,6 +209,5 @@ form.addEventListener('submit', async (e) => {
   }
 });
 </script>
-
 </body>
 </html>
