@@ -98,6 +98,8 @@ a:active { color: var(--color-muted); }
 #form-status { min-height: 1.5em; color: var(--color-ink); font-size: var(--text-sm); }
 
 .foot { padding-block: 0 var(--space-xl); color: var(--color-muted); font-size: var(--text-sm); }
+.foot .container { display: flex; align-items: center; gap: var(--space-md); }
+.foot-mark { flex: none; width: 64px; height: auto; }
 
 @media (max-width: 71rem) {
   .job { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); grid-template-rows: auto 1fr; column-gap: var(--space-xl); row-gap: var(--space-xs); }
